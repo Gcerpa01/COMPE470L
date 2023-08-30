@@ -1,3 +1,24 @@
+//////////////////////////////////////////////////////////////////////////////////
+// Company: 
+// Engineer: 
+// 
+// Create Date: 08/29/2023 10:54:10 PM
+// Design Name: 
+// Module Name: BCD_7
+// Project Name: 
+// Target Devices: 
+// Tool Versions: 
+// Description: 
+// 
+// Dependencies: 
+// 
+// Revision:
+// Revision 0.01 - File Created
+// Additional Comments:
+// 
+//////////////////////////////////////////////////////////////////////////////////
+
+
 module BCD_7(input [3:0] sw,
             output reg[6:0] out);
 
