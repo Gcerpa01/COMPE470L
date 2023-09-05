@@ -2,9 +2,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 08/29/2023 10:54:10 PM
+// Create Date: 09/4/2023 10:54:10 PM
 // Design Name: 
-// Module Name: BCD_7
+// Module Name: counter
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -101,9 +101,9 @@ always @(current_state) begin
 
         14: OUT = 7'b0110000;
 
-        15: OUT = 7'b01110000;
+        15: OUT = 7'b0111000;
 
-        default: OUT = 7'b01110000;
+        default: OUT = 7'b0111000;
     endcase
 end
 
