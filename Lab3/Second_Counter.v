@@ -11,6 +11,8 @@ module second_counter(input CLK_IN,
     reg [25:0] count = 0;
     reg CLK_OUT;
 
+    //basys 3 clk frequency = 100MHz = 100_000_000Hz
+    //100_000_000 / 2 = 50_000_000Hz 
     always @(posedge CLK_IN) begin 
         count <= count + 1;
         if (count == 50_000_000) begin
