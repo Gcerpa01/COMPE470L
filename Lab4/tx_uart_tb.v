@@ -46,7 +46,7 @@ module tx_uart_tb;
          @(posedge data_rdy) data_vld = 1'b1; tx_word = 8'h41; //A
          @(negedge data_rdy) data_vld = 1'b0;
 
-
+        @(posedge data_rdy);
         @(posedge CLK);
         
         $finish;
