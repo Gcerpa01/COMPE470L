@@ -29,10 +29,10 @@ module tx_uart_tb;
         RST = 1;  tx_word = 0; data_vld = 1'b0;
         @(posedge CLK) RST = 0;
 
-        @(posedge CLK) data_vld = 1'b1; tx_word = 8'h45; // C
+        @(posedge CLK) data_vld = 1'b1; tx_word = 8'h43; // C
         @(negedge data_rdy) data_vld = 1'b0;
         
-        @(posedge data_rdy) data_vld = 1'b1; tx_word = 8'h11; //E
+        @(posedge data_rdy) data_vld = 1'b1; tx_word = 8'h45; //E
         @(negedge data_rdy) data_vld = 1'b0;
 
         @(posedge data_rdy) data_vld = 1'b1; tx_word = 8'h52; //R
