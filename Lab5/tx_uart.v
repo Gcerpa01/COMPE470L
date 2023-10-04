@@ -10,17 +10,20 @@ module tx_uart#(parameter WL = 8,BAUD_RATE = 9600,
    localparam tx = 3'b010; localparam parity = 3'b011;
    localparam stop = 3'b100;
 
-   localparam clock_max = $ceil((CLK_FREQ/BAUD_RATE));
-   localparam bits = $clog2((CLK_FREQ/BAUD_RATE));
+//   localparam clock_max = $ceil((CLK_FREQ/BAUD_RATE));
+//   localparam bits = $clog2((CLK_FREQ/BAUD_RATE));
 
+   localparam clock_max = 5209;
+   localparam bits = 15;
    reg [$clog2(bits) - 1:0] bit_counter;
    reg [($clog2(clock_max)) - 1:0] clock_counter;
+
    reg [WL-1:0] sample;
    reg parity_bit;
    reg [2:0] state;
 
 
-   always @(posedge CLK or RST) begin
+   always @(posedge CLK) begin
        if(RST) begin
            state <= idle;
            data_rdy <= 1'b1;
@@ -89,4 +92,3 @@ module tx_uart#(parameter WL = 8,BAUD_RATE = 9600,
 
    end
 endmodule
-
