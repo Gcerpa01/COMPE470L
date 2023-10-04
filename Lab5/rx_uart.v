@@ -24,7 +24,7 @@ module rx_uart#(parameter WL = 8,BAUD_RATE = 9600,
    always @(posedge CLK or RST) begin
        if(RST) begin
            state <= idle;
-           data_vld = 1'b0;
+           data_vld <= 1'b0;
            par_err <= 1'b0;
            dout <= 0;
            sample <= 0;
@@ -92,6 +92,7 @@ module rx_uart#(parameter WL = 8,BAUD_RATE = 9600,
                         data_vld <= 1'b0;
                     end
                     state <= idle;
+                    dout <= sample;
                 end
                 else clock_counter <= clock_counter + 1;
 
