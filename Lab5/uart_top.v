@@ -24,7 +24,7 @@ module uart_top( input CLK, RST,
         .CLK_FREQ(100000000)) 
     transmitter (.CLK(CLK),
             .RST(RST),
-            .data_vld(data_rdy),
+            .data_vld(data_vld),
             .tx_word(rx_data), 
             .data_rdy(data_rdy),
             .uart_tx(uart_tx));
