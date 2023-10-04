@@ -10,8 +10,11 @@ module rx_uart#(parameter WL = 8,BAUD_RATE = 9600,
    localparam stop = 3'b100;
 
 
-   localparam clock_max = $ceil((CLK_FREQ/BAUD_RATE))/2;
-   localparam bits = $clog2((CLK_FREQ/BAUD_RATE));
+//   localparam clock_max = $ceil((CLK_FREQ/BAUD_RATE))/2;
+//   localparam bits = $clog2((CLK_FREQ/BAUD_RATE));
+
+   localparam clock_max = 5209;
+   localparam bits = 15;
 
 
    reg [$clog2(bits) - 1:0] bit_counter;
@@ -21,7 +24,7 @@ module rx_uart#(parameter WL = 8,BAUD_RATE = 9600,
    reg check_parity;
    reg rx_parity;
 
-   always @(posedge CLK or RST) begin
+   always @(posedge CLK) begin
        if(RST) begin
            state <= idle;
            data_vld <= 1'b0;
