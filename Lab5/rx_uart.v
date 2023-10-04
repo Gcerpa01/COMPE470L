@@ -83,14 +83,9 @@ module rx_uart#(parameter WL = 8,BAUD_RATE = 9600,
 
                 if(clock_counter == clock_max) begin
                     clock_counter <= 0;
-                    if(check_parity == rx_parity) begin
-                        par_err <= 1'b0;
-                        data_vld <= 1'b1;
-                    end
-                    else begin
-                        par_err <= 1'b1;
-                        data_vld <= 1'b0;
-                    end
+                    if(check_parity == rx_parity) par_err <= 1'b0;
+                    else par_err <= 1'b1;
+                    data_vld <= 1'b1;
                     state <= idle;
                     dout <= sample;
                 end
