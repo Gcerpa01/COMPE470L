@@ -1,11 +1,9 @@
-module uart_top( input CLK, RST, 
+module uart_top(input CLK, RST, 
             input uart_rx,    
-            output reg uart_tx);
+            output putty);
 
-    reg data_vld;      
-    reg par_err;       
-    reg [7:0] rx_data; 
-    wire data_rdy;     
+    wire [7:0] rx_data; 
+    wire data_rdy,data_vld,par_err;     
 
     // Instantiate the receiver module
     rx_uart #(.WL(8),        
@@ -27,12 +25,6 @@ module uart_top( input CLK, RST,
             .data_vld(data_vld),
             .tx_word(rx_data), 
             .data_rdy(data_rdy),
-            .uart_tx(uart_tx));
-
-    always @(posedge CLK) begin
-        if (data_vld && !par_err) begin
-            uart_tx <= rx_data;
-        end
-    end
+            .uart_tx(putty));
 
 endmodule
