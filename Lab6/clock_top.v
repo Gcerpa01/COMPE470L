@@ -2,6 +2,7 @@ module clock_top(
             input CLK_IN,
             input btn1,
             input btn2,
+            // input [3:0] sw,
             output [5:0] sec_led,
             output [6:0] BCD_out,
             output [3:0] anode,
@@ -35,5 +36,13 @@ clock_display CD(.CLK_IN(newCLK),
             .out(BCD_out),
             .anode(anode),
             .dp(dp));
+
+// clock_alarm CA(.sw(sw),
+//             .H_1(H_1);
+//             .H_0(H_0);
+//             .M_1(M_1);
+//             .M_0(M_0);
+//             .sec_led(sec_led),
+//             .alarm_led(alarm_led));
 
 endmodule
