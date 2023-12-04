@@ -38,8 +38,10 @@ module clock_alarm( input [3:0] sw,
                 blink_counter <= 0;
                 alarm_trigerred <= 1'b0; //alarm gets untriggered
             end
-            else blink_counter <= blink_counter + 1;
-            alarm_led <= ~alarm_led;
+            else begin 
+                blink_counter <= blink_counter + 1;
+                alarm_led <= ~alarm_led;
+            end
         end
     end
 

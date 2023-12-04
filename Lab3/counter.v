@@ -94,7 +94,7 @@ always @(current_state) begin
         10: OUT = 7'b0001000;
 
         11: OUT = 7'b1100000;
-
+        
         12: OUT = 7'b0110001;
 
         13: OUT = 7'b1000010;

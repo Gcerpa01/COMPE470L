@@ -19,11 +19,11 @@ module clock_counter(input CLK,
                     M_0 <= 0;
                     if(M_1 == 5) begin //check if there is a change in hour
                         M_1 <= 0;
-                        if(H_0 < 9 && !(H1 > 1 && H_0 > 2)) H_0 <= H_0 + 1; // change second hour digit 
+                        if(H_0 < 9 && !(H_1 > 1 && H_0 > 2)) H_0 <= H_0 + 1; // change second hour digit 
                         else begin //set second hour digit to 0 and change first hour digit
                             H_0 <= 0;
                             if(H_1 == 2) H_1 <= 0;
-                            else H_1 <= H1 + 1;
+                            else H_1 <= H_1 + 1;
                         end
                     end
                     else M_1 <= M_1 + 1; //add to minutes
@@ -49,7 +49,7 @@ module clock_counter(input CLK,
                     M_0 <= 0;
                     M_1 <= H_1 + 1;
                 end
-                else if(btn2 && M_1 == 5 && H_0 == 9) begin //60 minutes
+                else if(btn2 && M_1 == 5 && M_0 == 9) begin //60 minutes
                     M_0 <= 0;
                     M_1 <= 0;
                 end
