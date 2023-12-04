@@ -2,9 +2,10 @@
 module FIFO_SOLO_TEST(
     input CLK_IN,
     input [7:0] sw,        // 8-bit data_in
-    input btn1,            // btn for Reset
-    input btn2,            // btn for write
-    input btn3,            // btn for read
+    input btn1,            // btn for Reset (CENTER)
+    input btn2,            // btn for write (UP)
+    input btn3,            // btn for read (DOWN)
+    input btn4,             //auto(RIGHT)
     output wire [3:0] anode,// common anode
     output wire dp,
     output wire [6:0] BCD_out, // 7 segment
@@ -16,7 +17,7 @@ module FIFO_SOLO_TEST(
 
 ///////// FIFO purposes /////////////////////
     parameter WL = 8;
-    parameter DL = 4; //for display purposes
+    parameter DL = 400; //for display purposes
     parameter DEPTH = 4;
     reg [7:0] din; // Updated to 8 bits for the switch value
 //////////////////////////////////////////
@@ -57,6 +58,7 @@ module FIFO_SOLO_TEST(
             .RST(btn1),
             .wReq(btn2),
             .rReq(btn3),
+            .auto(btn4),
             .din(din),
             .dout(dout),
             .empty(empty),

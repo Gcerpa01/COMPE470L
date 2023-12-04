@@ -51,6 +51,7 @@ set_property PACKAGE_PIN W4 [get_ports {anode[3]}]
 set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports {btn1}]
 set_property -dict {PACKAGE_PIN T18 IOSTANDARD LVCMOS33} [get_ports {btn2}]
 set_property -dict {PACKAGE_PIN U17 IOSTANDARD LVCMOS33} [get_ports {btn3}]
+set_property -dict {PACKAGE_PIN T17 IOSTANDARD LVCMOS33} [get_ports {btn4}]
 
 
 set_property -dict {PACKAGE_PIN L1 IOSTANDARD LVCMOS33} [get_ports {full}]
