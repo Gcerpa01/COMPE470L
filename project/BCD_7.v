@@ -1,4 +1,4 @@
-module BCD_7(input value,
+module BCD_7 #(parameter WL = 4)(input [WL-1:0] value,
             output reg[6:0] OUT);
 
 always @(*) begin
