@@ -1,4 +1,4 @@
-module FIFO_TEST(
+module FIFO_SOLO_TEST(
     input CLK_IN,
     input [3:0] sw,      // data_in
     input btn1,         // btn for Reset
