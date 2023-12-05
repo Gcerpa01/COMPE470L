@@ -17,8 +17,8 @@ module FIFO_SOLO_TEST(
 
 ///////// FIFO purposes /////////////////////
     parameter WL = 8;
-    parameter DL = 400; //for display purposes
-    parameter DEPTH = 4;
+    parameter DL = 4; //for display purposes
+    parameter DEPTH = 50;
     reg [7:0] din; // Updated to 8 bits for the switch value
 //////////////////////////////////////////
 
