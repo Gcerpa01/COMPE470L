@@ -6,20 +6,22 @@ module FIFO_SOLO_TEST(
     input btn2,            // btn for write (UP)
     input btn3,            // btn for read (DOWN)
     input btn4,             //auto(RIGHT)
+    input RX_IN,
     output wire [3:0] anode,// common anode
     output wire dp,
     output wire [6:0] BCD_out, // 7 segment
     output wire full,
     output wire empty,
     output wire error,
-    output wire seconds
+    output wire seconds,
+    output wire [4:0] LED
 );
 
 ///////// FIFO purposes /////////////////////
     parameter WL = 8;
     parameter DL = 4; //for display purposes
-    parameter DEPTH = 50;
-    reg [7:0] din; // Updated to 8 bits for the switch value
+    parameter DEPTH = 500;
+    wire [7:0] RX_OUT; // Updated to 8 bits for the switch value
 //////////////////////////////////////////
 
 
@@ -51,7 +53,13 @@ module FIFO_SOLO_TEST(
     end
 
     assign seconds = second;
-
+    
+    UART_RX  #(.WL(WL)) DUT1 (.CLK(CLK_IN),
+              .RST(btn1),
+              .din(RX_IN),
+              .dout(RX_OUT),
+              .LED(LED));
+              
     FIFO #(.WL(WL),
            .DEPTH(DEPTH))
         DUT0(.CLK(CLK_OUT),
@@ -59,18 +67,18 @@ module FIFO_SOLO_TEST(
             .wReq(btn2),
             .rReq(btn3),
             .auto(btn4),
-            .din(din),
+            .din(RX_OUT),
             .dout(dout),
             .empty(empty),
             .full(full),
             .error(error));
                   
-    BCD_7 #(.DL(DL)) DUT2(.ones(ones),.ten(ten),.hund(hund),.CLK(CLK_IN),.RST(btn1),.anode(anode),.OUT(BCD_out)); // show on display
+    BCD_7 #(.DL(DL)) DUT2(.ones(ones),.ten(ten),.hund(hund),.full(dout),.CLK(CLK_IN),.RST(btn1),.anode(anode),.OUT(BCD_out)); // show on display
       
-    // Assign the value of sw to din
-    always @(posedge CLK_IN) begin
-        din <= sw;
-    end
+//    // Assign the value of sw to din
+//    always @(posedge CLK_IN) begin
+//        din <= sw;
+//    end
     
     assign ones = dout % 10;
     assign ten = (dout/10) % 10;
