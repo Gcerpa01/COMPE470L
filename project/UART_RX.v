@@ -1,7 +1,8 @@
 module UART_RX #(parameter WL = 8)
             (input CLK,RST,
              input din,
-             output [WL - 1:0] dout);
+             output [WL - 1:0] dout,
+             output reg [4:0] LED);
 
     reg shift;
     reg state,next_state;
@@ -36,7 +37,7 @@ module UART_RX #(parameter WL = 8)
                 state <= next_state; //receive
                 if(shift)rxshift_reg <= {din,rxshift_reg[WL+1:1]};
                 if(clear_samplecounter) sample_counter <= 0;
-                if(inc_samplecounter) sample_counter <= bit_counter + 1;
+                if(inc_samplecounter) sample_counter <= sample_counter + 1;
                 if(clear_bitcounter) bit_counter <= 0;
                 if(inc_bitcounter) bit_counter <= bit_counter + 1;
 
@@ -76,5 +77,16 @@ module UART_RX #(parameter WL = 8)
         endcase
 
     end
+    
+      always @ (posedge CLK or posedge RST) begin
+            if(RST) LED <= 0;
+            else begin
+                if(dout >= 0 || dout <= 50) LED <= 5'b00001;
+                else if(dout >= 51 || dout <= 101) LED <= 5'b00010;
+                else if(dout >= 102 || dout <= 152) LED <= 5'b00100;
+                else if(dout >= 153 || dout <= 203) LED <= 5'b01000;
+                else if(dout >= 204 || dout <= 255) LED <= 5'b10000;
+            end
+        end
 
 endmodule
