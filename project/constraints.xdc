@@ -7,7 +7,8 @@
 # Clock signal
 set_property PACKAGE_PIN W5 [get_ports CLK_IN]							
 	set_property IOSTANDARD LVCMOS33 [get_ports CLK_IN]
- 
+create_clock -period 10.00 -name sys_clk_pin -waveform [0.000 5.000] -add [get_ports CLK_IN]
+
 # Switches
 set_property PACKAGE_PIN V17 [get_ports {sw[0]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {sw[0]}]
@@ -54,6 +55,12 @@ set_property PACKAGE_PIN V4 [get_ports {anode[2]}]
 set_property PACKAGE_PIN W4 [get_ports {anode[3]}]					
 	set_property IOSTANDARD LVCMOS33 [get_ports {anode[3]}]
 
+# Constraints for Basys 3 LEDs and sec_led
+set_property -dict {PACKAGE_PIN U16 IOSTANDARD LVCMOS33} [get_ports {LED[0]}]
+set_property -dict {PACKAGE_PIN E19 IOSTANDARD LVCMOS33} [get_ports {LED[1]}]
+set_property -dict {PACKAGE_PIN U19 IOSTANDARD LVCMOS33} [get_ports {LED[2]}]
+set_property -dict {PACKAGE_PIN W18 IOSTANDARD LVCMOS33} [get_ports {LED[3]}]
+set_property -dict {PACKAGE_PIN V19 IOSTANDARD LVCMOS33} [get_ports {LED[4]}]
 
 # Button constraints (adjust as needed)
 set_property -dict {PACKAGE_PIN U18 IOSTANDARD LVCMOS33} [get_ports {btn1}]
@@ -66,3 +73,6 @@ set_property -dict {PACKAGE_PIN L1 IOSTANDARD LVCMOS33} [get_ports {full}]
 set_property -dict {PACKAGE_PIN P1 IOSTANDARD LVCMOS33} [get_ports {empty}]
 set_property -dict {PACKAGE_PIN N3 IOSTANDARD LVCMOS33} [get_ports {error}]
 set_property -dict {PACKAGE_PIN V13 IOSTANDARD LVCMOS33} [get_ports {seconds}]
+
+set_property PACKAGE_PIN B18 [get_ports RX_IN]                        
+    set_property IOSTANDARD LVCMOS33 [get_ports RX_IN]
