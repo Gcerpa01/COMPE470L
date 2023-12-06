@@ -2,6 +2,7 @@ module BCD_7 #(parameter DL = 4)
             (input [DL-1:0] ones,
             input [DL-1:0] ten,
             input [DL-1:0] hund,
+            input [(DL*2) - 1:0] full,
             input CLK,
             input RST,
             output reg [3:0] anode,
@@ -38,7 +39,7 @@ module BCD_7 #(parameter DL = 4)
                 else anode_timer <= anode_timer + 1;
             end
         end
-
+        
         always @(anode_select) begin
             case(anode_select) 
                 0: anode = 4'b1110;
@@ -93,6 +94,7 @@ module BCD_7 #(parameter DL = 4)
                 end
             endcase
         end
+    
 
 
 endmodule
